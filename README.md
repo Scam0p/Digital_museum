@@ -13,7 +13,6 @@
 
 ---
 
-<<<<<<< HEAD
 ## Quick Links & Deployment Info
 
 - **Live Production URL**: [https://ignite.powerhouse-tech.site/](https://ignite.powerhouse-tech.site/)
@@ -26,9 +25,6 @@
 ---
 
 ## 1. Problem Statement: Heritage & Cultural Tourism Challenge
-=======
-##  1. Problem Statement: Heritage & Cultural Tourism Challenge
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 India's journey to independence is filled with thousands of unsung heroes, indigenous tribal rebellions, and pivotal milestones. However, traditional heritage tourism and historical education face critical challenges today:
 
@@ -39,11 +35,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-<<<<<<< HEAD
 ## 2. Our Solution: POWERHOUSE Digital Museum
-=======
-##  2. Our Solution: POWERHOUSE Digital Museum
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 **POWERHOUSE Digital Museum** is a web-based, 60 FPS interactive archival platform and digital tourism portal built to democratize Indian history and provide a frictionless guided visit reservation ecosystem:
 
@@ -56,11 +48,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-<<<<<<< HEAD
 ## 3. Technology Stack
-=======
-##  3. Technology Stack
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 ### Frontend & Visual Architecture
 - **Core Framework**: React 18 with TypeScript for type-safe UI logic.
@@ -83,11 +71,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-<<<<<<< HEAD
 ## 4. Database Schema & Architecture
-=======
-##  4. Database Schema & Architecture
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 The application communicates with a PostgreSQL database hosted on Supabase (with automatic local failover if environment variables are not provided).
 
@@ -147,11 +131,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-<<<<<<< HEAD
 ## 5. External APIs, Cloud Services & AI Tools
-=======
-##  5. External APIs, Cloud Services & AI Tools
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 | Service / Tool | Purpose & Usage |
 |---|---|
@@ -164,11 +144,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-<<<<<<< HEAD
 ## 6. Getting Started / Local Setup
-=======
-##  6. Getting Started / Local Setup
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 ### Prerequisites
 - Node.js (v18.0.0 or higher)
@@ -208,11 +184,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-<<<<<<< HEAD
 ## 7. Team & Engineering Credits
-=======
-##  7. Team & Engineering Credits
->>>>>>> f3c2f5e6e521beb7cb7ed5d64722f3671aa88399
 
 Developed as part of the **80th Independence Day National Digital Museum Project**:
 
