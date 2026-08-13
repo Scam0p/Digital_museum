@@ -144,43 +144,12 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 6. Getting Started / Local Setup
+## 6. Intellectual Property & Usage Notice
 
-### Prerequisites
-- Node.js (v18.0.0 or higher)
-- npm or yarn
+This repository, its codebase, visual architecture, 3D assets, animations, and designs are the exclusive property of POWERHOUSE and its creators. 
 
-### Installation Steps
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Scam0p/Digital_museum.git
-   cd Digital_museum
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables (Optional for Supabase Cloud)**:
-   Create a `.env` file in the root directory if connecting to a live Supabase instance:
-   ```env
-   VITE_SUPABASE_URL=https://your-project.supabase.co
-   VITE_SUPABASE_ANON_KEY=your-anon-key
-   ```
-   *(Note: If no `.env` is provided, the platform automatically boots into high-performance local demo mode with zero configuration needed).*
-
-4. **Run development server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-5. **Build for production**:
-   ```bash
-   npm run build
-   ```
+- Unauthorized copying, cloning, redistribution, public mirroring, or commercial exploitation of this codebase or its media assets is strictly prohibited.
+- This repository is made accessible for project evaluation, academic review, and creative design inspiration only.
 
 ---
 
