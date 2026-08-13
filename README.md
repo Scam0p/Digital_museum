@@ -1,6 +1,9 @@
-# POWERHOUSE Digital Museum 🇮🇳
-### *Preserving National Heritage & Revolutionizing Cultural Tourism for the 80th Independence Day*
+# POWERHOUSE Digital Museum
+### Preserving National Heritage & Revolutionizing Cultural Tourism for the 80th Independence Day
 
+[![Live Deployment](https://img.shields.io/badge/Live_Deployment-ignite.powerhouse--tech.site-0052FF)](https://ignite.powerhouse-tech.site/)
+[![Hosting](https://img.shields.io/badge/Hosting-Cloudflare_Pages-F38020?logo=cloudflare)](https://pages.cloudflare.com/)
+[![Repository](https://img.shields.io/badge/GitHub-Digital__museum-181717?logo=github)](https://github.com/Scam0p/Digital_museum.git)
 [![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-Bundler-646CFF?logo=vite)](https://vitejs.dev/)
@@ -10,18 +13,29 @@
 
 ---
 
-## 🏛️ 1. Problem Statement: Heritage & Cultural Tourism Challenge
+## Quick Links & Deployment Info
+
+- **Live Production URL**: [https://ignite.powerhouse-tech.site/](https://ignite.powerhouse-tech.site/)
+- **Custom Subdomain**: `ignite.powerhouse-tech.site`
+- **Primary Domain**: `powerhouse-tech.site`
+- **Cloud Hosting Provider**: Cloudflare Pages (Global Anycast Edge Network)
+- **Source Code Repository**: [https://github.com/Scam0p/Digital_museum.git](https://github.com/Scam0p/Digital_museum.git)
+- **Target Branch**: `main`
+
+---
+
+## 1. Problem Statement: Heritage & Cultural Tourism Challenge
 
 India's journey to independence is filled with thousands of unsung heroes, indigenous tribal rebellions, and pivotal milestones. However, traditional heritage tourism and historical education face critical challenges today:
 
-1. **Geographic & Physical Access Barriers**: Over 85% of citizens and global enthusiasts cannot physically visit regional freedom museums in remote historical hubs (e.g., Tamluk, Gohpur, Sivaganga, Khasi Hills).
+1. **Geographic & Physical Access Barriers**: Over 85% of citizens and global enthusiasts cannot physically visit regional freedom museums located across distant historical hubs (e.g., Tamluk, Gohpur, Sivaganga, Khasi Hills).
 2. **Static, Unengaging Museum Displays**: Traditional brick-and-mortar archives often rely on static placards and glass cases, failing to engage modern, digital-first audiences.
 3. **Fragmentation of Historical Records**: Stories of regional martyrs (e.g., Kanaklata Barua, Matangini Hazra, U Tirot Sing) are scattered across disparate state archives without unified digital verification.
 4. **Inefficient Tourism Logistics**: Lack of seamless digital pass booking, verified ID access systems, and unified archival portals creates bottlenecks for museum visitors.
 
 ---
 
-## 💡 2. Our Solution: POWERHOUSE Digital Museum
+## 2. Our Solution: POWERHOUSE Digital Museum
 
 **POWERHOUSE Digital Museum** is a web-based, 60 FPS interactive archival platform and digital tourism portal built to democratize Indian history and provide a frictionless guided visit reservation ecosystem:
 
@@ -34,29 +48,30 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-## 🛠️ 3. Technology Stack
+## 3. Technology Stack
 
-### **Frontend & Visual Architecture**
+### Frontend & Visual Architecture
 - **Core Framework**: React 18 with TypeScript for type-safe UI logic.
-- **Bundler & Dev Server**: Vite with lightning-fast HMR and optimized production asset chunking.
+- **Bundler & Dev Server**: Vite with fast HMR and optimized production asset chunking.
 - **Styling**: Tailwind CSS, Vanilla CSS, and custom glassmorphism design tokens.
 - **Smooth Scrolling Engine**: [Lenis](https://github.com/darkroomengineering/lenis) RAF-synced smooth virtual scroll controller.
 - **Motion & Micro-interactions**: [Framer Motion](https://www.framer.com/motion/) for fluid transitions, modals, and stagger reveals.
 - **3D & WebGL**: [OGL](https://github.com/oframe/ogl) lightweight WebGL engine for 3D curved image galleries.
 - **Icons**: Lucide React.
 
-### **Backend, Database & Storage**
+### Backend, Database & Cloud Infrastructure
+- **Hosting & CDN**: [Cloudflare Pages](https://pages.cloudflare.com/) (Edge-cached static assets, automated CI/CD deployments from GitHub).
 - **Cloud Database**: [Supabase](https://supabase.com/) (Managed PostgreSQL database with Row Level Security).
 - **Authentication**: Supabase Auth with custom visitor credential generator.
 - **Resilient Fallback Storage**: Automated offline-first LocalStorage & IndexedDB cache to guarantee 100% uptime during network dropouts or demo evaluations.
 
-### **Audio & Multimedia**
+### Audio & Multimedia
 - **Web Audio API**: Spatial ambient background score with global audio state toggle.
 - **Asset Sequence**: Optimized WebP frame sequences (600 frames) preloaded via a 60fps lerp-interpolated preloader.
 
 ---
 
-## 🗄️ 4. Database Schema & Architecture
+## 4. Database Schema & Architecture
 
 The application communicates with a PostgreSQL database hosted on Supabase (with automatic local failover if environment variables are not provided).
 
@@ -116,10 +131,11 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 🌐 5. External APIs, Cloud Services & AI Tools
+## 5. External APIs, Cloud Services & AI Tools
 
 | Service / Tool | Purpose & Usage |
 |---|---|
+| **Cloudflare Pages** | Global edge hosting, continuous deployment from GitHub, automated SSL/TLS termination on `ignite.powerhouse-tech.site`. |
 | **Supabase Cloud (PostgreSQL)** | Cloud-hosted database for persistent visitor profiles, authentication, and pass reservations. |
 | **Wikipedia Public Archives** | Authoritative historical data verification and external incident citations for milestones and freedom fighter profiles. |
 | **Web Audio API** | Dynamic audio playback engine for ambient national music. |
@@ -128,7 +144,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 🚀 6. Getting Started / Local Setup
+## 6. Getting Started / Local Setup
 
 ### Prerequisites
 - Node.js (v18.0.0 or higher)
@@ -168,7 +184,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 👥 7. Team & Engineering Credits
+## 7. Team & Engineering Credits
 
 Developed as part of the **80th Independence Day National Digital Museum Project**:
 
@@ -180,7 +196,7 @@ Developed as part of the **80th Independence Day National Digital Museum Project
 
 ---
 
-## 📜 8. License & Accreditation
+## 8. License & Accreditation
 - **Registered MSME**: `UDYAM-KR-03-0720445`
 - **Copyright**: © 2026 POWERHOUSE. All rights reserved.
 - **Historical Content**: Derived from verified public records of the Indian Freedom Struggle.
