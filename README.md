@@ -10,7 +10,7 @@
 
 ---
 
-## 🏛️ 1. Problem Statement: Heritage & Cultural Tourism Challenge
+##  1. Problem Statement: Heritage & Cultural Tourism Challenge
 
 India's journey to independence is filled with thousands of unsung heroes, indigenous tribal rebellions, and pivotal milestones. However, traditional heritage tourism and historical education face critical challenges today:
 
@@ -21,7 +21,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-## 💡 2. Our Solution: POWERHOUSE Digital Museum
+##  2. Our Solution: POWERHOUSE Digital Museum
 
 **POWERHOUSE Digital Museum** is a web-based, 60 FPS interactive archival platform and digital tourism portal built to democratize Indian history and provide a frictionless guided visit reservation ecosystem:
 
@@ -34,7 +34,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-## 🛠️ 3. Technology Stack
+##  3. Technology Stack
 
 ### **Frontend & Visual Architecture**
 - **Core Framework**: React 18 with TypeScript for type-safe UI logic.
@@ -56,7 +56,7 @@ India's journey to independence is filled with thousands of unsung heroes, indig
 
 ---
 
-## 🗄️ 4. Database Schema & Architecture
+##  4. Database Schema & Architecture
 
 The application communicates with a PostgreSQL database hosted on Supabase (with automatic local failover if environment variables are not provided).
 
@@ -116,7 +116,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 🌐 5. External APIs, Cloud Services & AI Tools
+##  5. External APIs, Cloud Services & AI Tools
 
 | Service / Tool | Purpose & Usage |
 |---|---|
@@ -128,7 +128,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 🚀 6. Getting Started / Local Setup
+##  6. Getting Started / Local Setup
 
 ### Prerequisites
 - Node.js (v18.0.0 or higher)
@@ -168,7 +168,7 @@ ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
 ---
 
-## 👥 7. Team & Engineering Credits
+##  7. Team & Engineering Credits
 
 Developed as part of the **80th Independence Day National Digital Museum Project**:
 
