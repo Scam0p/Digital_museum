@@ -406,7 +406,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
           <h1
             onClick={scrollToTop}
             className="text-2xl font-extrabold text-red-600 tracking-tight cursor-pointer select-none"
-            style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
           >
             POWERHOUSE
           </h1>
@@ -565,7 +565,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
               <div className="flex items-center gap-3">
                 <span
                   className="text-3xl md:text-4xl font-extrabold text-red-600 tracking-tight select-none cursor-pointer"
-                  style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
                   onClick={scrollToTop}
                 >
                   POWERHOUSE
@@ -584,8 +584,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Live Digital Archive
                 </span>
-                <span>•</span>
-                <span>500+ Verified Records</span>
               </div>
             </div>
 
@@ -919,7 +917,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
                         </div>
                         <span 
                           className="text-red-500 font-extrabold uppercase italic tracking-[0.12em] text-[11px]"
-                          style={{ fontFamily: "Impact, sans-serif" }}
+                          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
                         >
                           POWERHOUSE MEMBER
                         </span>

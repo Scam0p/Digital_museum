@@ -56,7 +56,7 @@ export const TicketPassModal: React.FC<TicketPassModalProps> = ({
                 <span 
                   className="text-red-600 font-extrabold uppercase italic text-lg leading-none"
                   style={{ 
-                    fontFamily: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+                    fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif",
                     letterSpacing: "0.24em"
                   }}
                 >

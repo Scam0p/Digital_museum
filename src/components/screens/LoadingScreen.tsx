@@ -80,7 +80,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Brand */}
         <h1
           className="text-5xl font-extrabold text-red-600 tracking-tight"
-          style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
         >
           POWERHOUSE
         </h1>

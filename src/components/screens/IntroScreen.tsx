@@ -16,7 +16,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onProceed }) => {
       <header className="w-full flex flex-col items-center justify-center py-6 z-10">
         <h1 
           className="text-7xl md:text-9xl tracking-tight text-red-600 font-extrabold select-none transition-transform duration-500 hover:scale-[1.02]"
-          style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
         >
           POWERHOUSE
         </h1>
@@ -61,7 +61,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onProceed }) => {
               </h3>
             </div>
             <p className="text-xs leading-relaxed text-zinc-400 font-sans">
-              <span className="text-red-600 font-extrabold" style={{ fontFamily: "'Impact', sans-serif" }}>POWERHOUSE</span> combines archival storytelling with interactive design—letting users explore forgotten freedom fighters and cultural heritage, then book a guided museum tour experience end-to-end, all in one platform.
+              <span className="text-red-600 font-extrabold" style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}>POWERHOUSE</span> combines archival storytelling with interactive design—letting users explore forgotten freedom fighters and cultural heritage, then book a guided museum tour experience end-to-end, all in one platform.
             </p>
           </div>
         </div>

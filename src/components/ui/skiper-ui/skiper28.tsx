@@ -120,7 +120,7 @@ const TextLine: React.FC<TextLineProps> = ({ text, index, total, progress }) => 
         }`}
         style={{
           fontSize: "clamp(2.5rem, 8vw, 9rem)",
-          fontFamily: "'Impact', 'Arial Black', sans-serif",
+          fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif",
           letterSpacing: "-0.02em",
           lineHeight: 1,
           display: "block",
