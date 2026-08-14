@@ -17,6 +17,7 @@ import {
   Mail, Phone, MessageCircle, BookOpen
 } from "lucide-react";
 import { HistoryScreen } from "./HistoryScreen";
+import { HeroLocationCard } from "./HeroLocationCard";
 
 interface MainLayoutProps {
   onSignOut: () => void;
@@ -116,6 +117,10 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
 
   // Selected Pass Modal State (for viewing past passes from dashboard)
   const [selectedPassForModal, setSelectedPassForModal] = useState<BookingRecord | null>(null);
+
+  // Active monument location tracker for hero sequence (0 to 4)
+  const [activeLocationIndex, setActiveLocationIndex] = useState<number>(0);
+  const [isHeroLocationVisible, setIsHeroLocationVisible] = useState<boolean>(true);
 
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -251,11 +256,19 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
         drawFrameAtIndex(idx);
       }
 
+      // Update active monument location (5 locations evenly distributed across hero sequence)
+      const locIdx = Math.min(4, Math.floor(progress * 5));
+      setActiveLocationIndex(locIdx);
+
+      // Hide hero location card once scrolled past hero
+      const pastHero = scrollPosition >= heroPxTotal() - 80;
+      setIsHeroLocationVisible(!pastHero);
+
       // Hide canvas once scrolled past hero so it never peeks through edges or behind sections
       if (canvasRef.current) {
-        const pastHero = scrollPosition >= heroPxTotal() - 50;
-        canvasRef.current.style.opacity = pastHero ? "0" : "1";
-        canvasRef.current.style.visibility = pastHero ? "hidden" : "visible";
+        const pastHeroCanvas = scrollPosition >= heroPxTotal() - 50;
+        canvasRef.current.style.opacity = pastHeroCanvas ? "0" : "1";
+        canvasRef.current.style.visibility = pastHeroCanvas ? "hidden" : "visible";
       }
 
       // Fade center nav links out once past the hero spacer
@@ -482,6 +495,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
           <ArrowDown size={18} className="text-black" />
         </button>
       </motion.div>
+
+      {/* ── HERO FLOATING LOCATION MESSAGE BOX (Masks bottom-right star watermark) ── */}
+      <HeroLocationCard
+        activeIndex={activeLocationIndex}
+        isVisible={isHeroLocationVisible}
+      />
 
       {/* Spacer — provides scroll height for the 3D hero sequence.
            flex-shrink-0 prevents outer flex containers from collapsing it. */}
