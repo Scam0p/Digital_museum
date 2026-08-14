@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IntroScreen } from './components/screens/IntroScreen';
 import { AuthScreen } from './components/screens/AuthScreen';
 import { LoadingScreen } from './components/screens/LoadingScreen';
 import { MainLayout } from './components/MainLayout';
 import { databaseService } from './lib/databaseService';
+import { startHeroPreload } from './lib/threeDHeroManager';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type ScreenState = 'intro' | 'auth' | 'loading' | 'main';
 
 function App() {
   const [screen, setScreen] = useState<ScreenState>('intro');
+
+  useEffect(() => {
+    // Eagerly start downloading critical hero frames in the background
+    startHeroPreload();
+  }, []);
 
   const handleIntroProceed = () => {
     setScreen('auth');

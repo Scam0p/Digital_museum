@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useInView, type Variants } from "framer-motion";
 import Lenis from "lenis";
 import { databaseService } from "@/lib/databaseService";
-import { getHeroImages } from "@/lib/threeDHeroManager";
+import { getHeroImages, getHeroFrame } from "@/lib/threeDHeroManager";
 import type { UserProfile, BookingRecord } from "@/lib/databaseService";
 import { audioManager } from "@/lib/audioManager";
 import CircularGallery from "./CircularGallery";
@@ -180,7 +180,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const img = images[Math.min(599, Math.max(0, Math.round(idx)))];
+    const img = getHeroFrame(idx);
     if (img && img.complete) {
       drawCoverImage(ctx, img, canvas.width, canvas.height);
     }
