@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin,
   Clock,
   Volume2,
   Ticket,
   ChevronRight,
-  Sparkles,
   ShieldCheck,
   X,
   Compass,
@@ -25,7 +23,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
 }) => {
   const [activeCityId, setActiveCityId] = useState<string>("delhi");
   const [isDetailModalOpen, setIsDetailModalOpen] = useState<boolean>(false);
-  const [hoveredCityId, setHoveredCityId] = useState<string | null>(null);
 
   const currentCity =
     MUSEUM_TOUR_CITIES.find((c) => c.id === activeCityId) ||
@@ -127,8 +124,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               {/* 1. DELHI */}
               <button
                 onClick={() => handleCityPinClick("delhi")}
-                onMouseEnter={() => setHoveredCityId("delhi")}
-                onMouseLeave={() => setHoveredCityId(null)}
                 className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
                 style={{ left: "48%", top: "31%", transform: "translate(-50%, -50%)" }}
               >
@@ -146,8 +141,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               {/* 2. MUMBAI */}
               <button
                 onClick={() => handleCityPinClick("mumbai")}
-                onMouseEnter={() => setHoveredCityId("mumbai")}
-                onMouseLeave={() => setHoveredCityId(null)}
                 className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
                 style={{ left: "29%", top: "60%", transform: "translate(-50%, -50%)" }}
               >
@@ -165,8 +158,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               {/* 3. KOLKATA */}
               <button
                 onClick={() => handleCityPinClick("kolkata")}
-                onMouseEnter={() => setHoveredCityId("kolkata")}
-                onMouseLeave={() => setHoveredCityId(null)}
                 className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
                 style={{ left: "74%", top: "52%", transform: "translate(-50%, -50%)" }}
               >
@@ -184,8 +175,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               {/* 4. BANGALORE */}
               <button
                 onClick={() => handleCityPinClick("bangalore")}
-                onMouseEnter={() => setHoveredCityId("bangalore")}
-                onMouseLeave={() => setHoveredCityId(null)}
                 className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
                 style={{ left: "44%", top: "76%", transform: "translate(-50%, -50%)" }}
               >
@@ -203,8 +192,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               {/* 5. CHENNAI */}
               <button
                 onClick={() => handleCityPinClick("chennai")}
-                onMouseEnter={() => setHoveredCityId("chennai")}
-                onMouseLeave={() => setHoveredCityId(null)}
                 className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
                 style={{ left: "52%", top: "78%", transform: "translate(-50%, -50%)" }}
               >
