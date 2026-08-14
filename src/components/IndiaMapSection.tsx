@@ -12,8 +12,6 @@ import {
   Compass,
   Landmark,
   ArrowRight,
-  BookOpen,
-  Eye,
   Award
 } from "lucide-react";
 import { MUSEUM_TOUR_CITIES, type MuseumTourCity } from "@/lib/museumTourData";
@@ -61,7 +59,7 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
     }, 100);
   };
 
-  // Lock background body scroll when the modal is open
+  // Lock background body scroll when the modal is open to prevent background scrolling
   useEffect(() => {
     if (isDetailModalOpen) {
       document.body.style.overflow = "hidden";
@@ -89,20 +87,20 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             National Archival Network
           </span>
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wide"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wide text-center"
             style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.05em" }}
           >
             EXPLORE THE 5 CITIES AND MUSEUMS
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans leading-relaxed text-center">
             Click any pin on the map to inspect the verified museum archives, guided tour itineraries, rare artifacts, and cultural significance before securing your visitor pass.
           </p>
         </div>
 
         {/* Main Map & Interactive Showcase Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left / Center: Interactive Black India Map (7 Cols on desktop) */}
-          <div className="lg:col-span-7 relative w-full rounded-3xl bg-[#09090f] border border-white/10 p-4 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          {/* Left / Center: Static India Map (7 Cols on desktop) */}
+          <div className="lg:col-span-7 relative w-full rounded-3xl bg-[#09090f] border border-white/10 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
             {/* Map Frame Watermark / Coordinate overlay */}
             <div className="absolute top-4 left-6 flex items-center gap-2 text-[10px] font-mono text-zinc-400">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -115,171 +113,111 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               <span>LONG 68°7′E — 97°25′E</span>
             </div>
 
-            {/* SVG India Map Container */}
-            <div className="relative w-full aspect-[4/5] max-h-[580px] mx-auto flex items-center justify-center pt-6">
-              <svg
-                viewBox="0 0 450 540"
-                className="w-full h-full select-none"
-                style={{ filter: "drop-shadow(0 0 25px rgba(0,0,0,0.9))" }}
+            {/* Static PNG India Map Container with Absolute Interactive Pins */}
+            <div className="relative w-full aspect-[1/1.15] max-w-[450px] mx-auto flex items-center justify-center pt-8">
+              {/* Static High-Quality Transparent Silhouette Map of India */}
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/India_map_blank.svg/512px-India_map_blank.svg.png"
+                alt="India Outline Map"
+                className="w-full h-full object-contain select-none pointer-events-none opacity-25"
+                style={{ filter: "invert(1) brightness(0.65) contrast(1.1)" }}
+              />
+
+              {/* Absolute City Pins overlaying the static PNG map */}
+              {/* 1. DELHI */}
+              <button
+                onClick={() => handleCityPinClick("delhi")}
+                onMouseEnter={() => setHoveredCityId("delhi")}
+                onMouseLeave={() => setHoveredCityId(null)}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
+                style={{ left: "48%", top: "31%", transform: "translate(-50%, -50%)" }}
               >
-                {/* Subtle Grid Lat/Long Lines */}
-                <g stroke="rgba(255,255,255,0.03)" strokeWidth="0.5">
-                  <line x1="20" y1="100" x2="430" y2="100" />
-                  <line x1="20" y1="200" x2="430" y2="200" />
-                  <line x1="20" y1="300" x2="430" y2="300" />
-                  <line x1="20" y1="400" x2="430" y2="400" />
-                  <line x1="100" y1="20" x2="100" y2="520" />
-                  <line x1="200" y1="20" x2="200" y2="520" />
-                  <line x1="300" y1="20" x2="300" y2="520" />
-                  <line x1="400" y1="20" x2="400" y2="520" />
-                </g>
-
-                {/* Stylized Accurate India Contour Outline in Dark Theme */}
-                <path
-                  d="M175,32 L198,40 L212,56 L205,82 L225,98 L240,92 L258,110 L250,132 L275,138 L308,132 L342,148 L370,140 L400,165 L395,190 L360,195 L345,215 L320,205 L315,225 L328,245 L310,268 L285,260 L270,278 L250,270 L262,315 L245,355 L215,395 L198,435 L190,480 L180,488 L168,440 L152,380 L128,340 L115,285 L85,268 L70,240 L98,228 L115,195 L128,198 L142,165 L145,120 L160,85 Z"
-                  fill="#0e0e18"
-                  stroke="#ffffff25"
-                  strokeWidth="1.8"
-                  strokeLinejoin="round"
-                  className="transition-colors duration-300 hover:fill-[#121220]"
-                />
-
-                {/* Kashmir & Northern Frontiers */}
-                <path
-                  d="M175,32 L150,55 L145,95 L160,85 L175,32 Z"
-                  fill="#0e0e18"
-                  stroke="#ffffff25"
-                  strokeWidth="1.2"
-                />
-
-                {/* Gujarat / Kathiawar Peninsula */}
-                <path
-                  d="M115,195 L68,210 L55,235 L70,250 L98,240 L115,220 Z"
-                  fill="#0e0e18"
-                  stroke="#ffffff25"
-                  strokeWidth="1.2"
-                />
-
-                {/* Northeast States Branch */}
-                <path
-                  d="M342,148 L380,145 L415,160 L428,185 L395,190 L365,180 Z"
-                  fill="#0e0e18"
-                  stroke="#ffffff25"
-                  strokeWidth="1.2"
-                />
-
-                {/* South Coastal Tip */}
-                <path
-                  d="M190,480 L180,515 L172,485 Z"
-                  fill="#0e0e18"
-                  stroke="#ffffff25"
-                  strokeWidth="1.2"
-                />
-
-                {/* Inter-City Cultural Connecting Flight/Route Vectors */}
-                <path
-                  d="M185,155 Q150,280 145,310 Q160,380 185,415 Q210,410 215,420 Q240,320 305,275 Q245,210 185,155 Z"
-                  fill="none"
-                  stroke="rgba(239, 68, 68, 0.2)"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
-                />
-
-                {/* 5 City Interactive Pins Placed on Exact SVG Coordinates */}
-                {/* 1. DELHI */}
-                <g
-                  className="cursor-pointer group"
-                  onClick={() => handleCityPinClick("delhi")}
-                  onMouseEnter={() => setHoveredCityId("delhi")}
-                  onMouseLeave={() => setHoveredCityId(null)}
-                >
-                  <circle cx="185" cy="155" r="16" fill="rgba(239, 68, 68, 0.15)" className="animate-ping" />
-                  <circle cx="185" cy="155" r="8" fill="#ef4444" stroke="#ffffff" strokeWidth="2" />
-                  <circle cx="185" cy="155" r="3" fill="#ffffff" />
-                  {/* City Label */}
-                  <rect x="202" y="142" width="70" height="24" rx="6" fill="#12121c" stroke="#ef4444" strokeWidth="1" />
-                  <text x="237" y="158" fill="#ffffff" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">
+                <div className="relative flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-[#ef4444] border-2 border-white shadow-lg"></span>
+                  
+                  {/* Tooltip badge */}
+                  <div className="absolute left-6 px-2.5 py-1 rounded bg-[#12121c] border border-red-500/50 text-[10px] font-bold text-white whitespace-nowrap shadow-xl">
                     DELHI
-                  </text>
-                </g>
+                  </div>
+                </div>
+              </button>
 
-                {/* 2. MUMBAI */}
-                <g
-                  className="cursor-pointer group"
-                  onClick={() => handleCityPinClick("mumbai")}
-                  onMouseEnter={() => setHoveredCityId("mumbai")}
-                  onMouseLeave={() => setHoveredCityId(null)}
-                >
-                  <circle cx="145" cy="310" r="16" fill="rgba(249, 115, 22, 0.15)" className="animate-ping" />
-                  <circle cx="145" cy="310" r="8" fill="#f97316" stroke="#ffffff" strokeWidth="2" />
-                  <circle cx="145" cy="310" r="3" fill="#ffffff" />
-                  {/* City Label */}
-                  <rect x="62" y="297" width="75" height="24" rx="6" fill="#12121c" stroke="#f97316" strokeWidth="1" />
-                  <text x="99" y="313" fill="#ffffff" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">
+              {/* 2. MUMBAI */}
+              <button
+                onClick={() => handleCityPinClick("mumbai")}
+                onMouseEnter={() => setHoveredCityId("mumbai")}
+                onMouseLeave={() => setHoveredCityId(null)}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
+                style={{ left: "29%", top: "60%", transform: "translate(-50%, -50%)" }}
+              >
+                <div className="relative flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-orange-500/30 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-[#f97316] border-2 border-white shadow-lg"></span>
+                  
+                  {/* Tooltip badge */}
+                  <div className="absolute right-6 px-2.5 py-1 rounded bg-[#12121c] border border-orange-500/50 text-[10px] font-bold text-white whitespace-nowrap shadow-xl">
                     MUMBAI
-                  </text>
-                </g>
+                  </div>
+                </div>
+              </button>
 
-                {/* 3. KOLKATA */}
-                <g
-                  className="cursor-pointer group"
-                  onClick={() => handleCityPinClick("kolkata")}
-                  onMouseEnter={() => setHoveredCityId("kolkata")}
-                  onMouseLeave={() => setHoveredCityId(null)}
-                >
-                  <circle cx="305" cy="275" r="16" fill="rgba(239, 68, 68, 0.15)" className="animate-ping" />
-                  <circle cx="305" cy="275" r="8" fill="#ef4444" stroke="#ffffff" strokeWidth="2" />
-                  <circle cx="305" cy="275" r="3" fill="#ffffff" />
-                  {/* City Label */}
-                  <rect x="322" y="262" width="80" height="24" rx="6" fill="#12121c" stroke="#ef4444" strokeWidth="1" />
-                  <text x="362" y="278" fill="#ffffff" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">
+              {/* 3. KOLKATA */}
+              <button
+                onClick={() => handleCityPinClick("kolkata")}
+                onMouseEnter={() => setHoveredCityId("kolkata")}
+                onMouseLeave={() => setHoveredCityId(null)}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
+                style={{ left: "74%", top: "52%", transform: "translate(-50%, -50%)" }}
+              >
+                <div className="relative flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-[#ef4444] border-2 border-white shadow-lg"></span>
+                  
+                  {/* Tooltip badge */}
+                  <div className="absolute left-6 px-2.5 py-1 rounded bg-[#12121c] border border-red-500/50 text-[10px] font-bold text-white whitespace-nowrap shadow-xl">
                     KOLKATA
-                  </text>
-                </g>
+                  </div>
+                </div>
+              </button>
 
-                {/* 4. BANGALORE */}
-                <g
-                  className="cursor-pointer group"
-                  onClick={() => handleCityPinClick("bangalore")}
-                  onMouseEnter={() => setHoveredCityId("bangalore")}
-                  onMouseLeave={() => setHoveredCityId(null)}
-                >
-                  <circle cx="185" cy="415" r="16" fill="rgba(245, 158, 11, 0.15)" className="animate-ping" />
-                  <circle cx="185" cy="415" r="8" fill="#f59e0b" stroke="#ffffff" strokeWidth="2" />
-                  <circle cx="185" cy="415" r="3" fill="#ffffff" />
-                  {/* City Label */}
-                  <rect x="90" y="402" width="86" height="24" rx="6" fill="#12121c" stroke="#f59e0b" strokeWidth="1" />
-                  <text x="133" y="418" fill="#ffffff" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">
+              {/* 4. BANGALORE */}
+              <button
+                onClick={() => handleCityPinClick("bangalore")}
+                onMouseEnter={() => setHoveredCityId("bangalore")}
+                onMouseLeave={() => setHoveredCityId(null)}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
+                style={{ left: "44%", top: "76%", transform: "translate(-50%, -50%)" }}
+              >
+                <div className="relative flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-amber-500/30 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-[#f59e0b] border-2 border-white shadow-lg"></span>
+                  
+                  {/* Tooltip badge */}
+                  <div className="absolute right-6 px-2.5 py-1 rounded bg-[#12121c] border border-amber-500/50 text-[10px] font-bold text-white whitespace-nowrap shadow-xl">
                     BANGALORE
-                  </text>
-                </g>
+                  </div>
+                </div>
+              </button>
 
-                {/* 5. CHENNAI */}
-                <g
-                  className="cursor-pointer group"
-                  onClick={() => handleCityPinClick("chennai")}
-                  onMouseEnter={() => setHoveredCityId("chennai")}
-                  onMouseLeave={() => setHoveredCityId(null)}
-                >
-                  <circle cx="215" cy="420" r="16" fill="rgba(239, 68, 68, 0.15)" className="animate-ping" />
-                  <circle cx="215" cy="420" r="8" fill="#ef4444" stroke="#ffffff" strokeWidth="2" />
-                  <circle cx="215" cy="420" r="3" fill="#ffffff" />
-                  {/* City Label */}
-                  <rect x="232" y="407" width="76" height="24" rx="6" fill="#12121c" stroke="#ef4444" strokeWidth="1" />
-                  <text x="270" y="423" fill="#ffffff" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">
+              {/* 5. CHENNAI */}
+              <button
+                onClick={() => handleCityPinClick("chennai")}
+                onMouseEnter={() => setHoveredCityId("chennai")}
+                onMouseLeave={() => setHoveredCityId(null)}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
+                style={{ left: "52%", top: "78%", transform: "translate(-50%, -50%)" }}
+              >
+                <div className="relative flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-[#ef4444] border-2 border-white shadow-lg"></span>
+                  
+                  {/* Tooltip badge */}
+                  <div className="absolute left-6 px-2.5 py-1 rounded bg-[#12121c] border border-red-500/50 text-[10px] font-bold text-white whitespace-nowrap shadow-xl">
                     CHENNAI
-                  </text>
-                </g>
-              </svg>
-            </div>
-
-            {/* Quick interactive hint badge */}
-            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-zinc-400 font-mono">
-              <span className="flex items-center gap-1.5 text-red-400">
-                <Sparkles size={12} />
-                Click any city pin to launch full museum tour details
-              </span>
-              <span>5 Curated Hubs</span>
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
 
@@ -356,236 +294,241 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
             onClick={() => setIsDetailModalOpen(false)}
           >
+            {/* Modal Inner Container - Flex container with scrollable content block and fixed header/footer */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-[#09090f] border border-white/15 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-y-auto max-h-[85vh] sm:max-h-[90vh] my-auto text-zinc-100 selection:bg-red-600/30"
+              className="relative w-full max-w-4xl bg-[#09090f] border border-white/15 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-h-[85vh] sm:max-h-[90vh] flex flex-col overflow-hidden text-zinc-100 selection:bg-red-600/30"
             >
               {/* Top Accent Stripe */}
-              <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-red-600 via-orange-500 to-amber-400" />
+              <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-red-600 via-orange-500 to-amber-400 z-35" />
 
-              {/* Close Button */}
-              <button
-                onClick={() => setIsDetailModalOpen(false)}
-                className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer"
-                title="Close Tour Details"
-              >
-                <X size={18} />
-              </button>
-
-              {/* Header: Location & Museum Tag */}
-              <div className="flex flex-col gap-2 mb-6 pr-10">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="px-2.5 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-[10px] font-mono font-bold uppercase tracking-wider text-red-400">
-                    {currentCity.badge}
-                  </span>
-                  <span className="text-[11px] font-mono text-zinc-400">
-                    City 0{currentCityIndex + 1} of 05 • {currentCity.state}
-                  </span>
-                </div>
-
-                <h2
-                  className="text-2xl sm:text-4xl font-extrabold text-white"
-                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.05em" }}
-                >
-                  {currentCity.name.toUpperCase()} — {currentCity.museumName.toUpperCase()}
-                </h2>
-
-                <p className="text-xs sm:text-sm text-zinc-300 font-sans italic">
-                  "{currentCity.tagline}"
-                </p>
-              </div>
-
-              {/* Immersive Splitted Gallery Banner (Virasat Inspired) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                {/* Museum Architecture Image Card */}
-                <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44 sm:h-56">
-                  <img
-                    src={currentCity.museumImage}
-                    alt={currentCity.museumName}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
-                    <span className="text-[9px] font-mono uppercase tracking-widest text-amber-400 font-bold">Museum Architecture</span>
-                    <h4 className="text-xs font-bold text-white font-sans truncate max-w-[280px]">
-                      {currentCity.museumName}
-                    </h4>
+              {/* 1. FIXED MODAL HEADER - Remains static, close button always working */}
+              <div className="p-6 sm:p-8 border-b border-white/10 flex items-center justify-between gap-4 flex-shrink-0 relative z-30 bg-[#09090f]">
+                <div className="flex flex-col gap-1.5 pr-12">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-[9px] font-mono font-bold uppercase tracking-wider text-red-400">
+                      {currentCity.badge}
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-400">
+                      Location 0{currentCityIndex + 1} • {currentCity.state}
+                    </span>
                   </div>
-                </div>
-
-                {/* Historical Context Image Card */}
-                <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44 sm:h-56">
-                  <img
-                    src={currentCity.historyImage}
-                    alt={currentCity.tourTitle}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
-                    <span className="text-[9px] font-mono uppercase tracking-widest text-red-400 font-bold">Historical Archive Exhibit</span>
-                    <h4 className="text-xs font-bold text-white font-sans truncate max-w-[280px]">
-                      {currentCity.tourTitle}
-                    </h4>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Info Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white/[0.02] border border-white/5 mb-8">
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Tour Duration</span>
-                  <span className="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
-                    <Clock size={13} className="text-amber-400" />
-                    {currentCity.tourDuration}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Audio Guide</span>
-                  <span className="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
-                    <Volume2 size={13} className="text-green-400" />
-                    Bilingual Included
-                  </span>
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Languages</span>
-                  <span className="text-xs sm:text-sm font-bold text-white truncate">
-                    {currentCity.languages.join(", ")}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase">Standard Pass</span>
-                  <span className="text-xs sm:text-sm font-bold text-red-400 flex items-center gap-1 font-mono">
-                    <Ticket size={13} />
-                    {currentCity.guidedPassPrice}
-                  </span>
-                </div>
-              </div>
-
-              {/* Architecture & Overview */}
-              <div className="mb-8 flex flex-col gap-2.5">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                  <Landmark size={14} className="text-red-500" />
-                  Museum Architecture & Archival Background
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
-                  {currentCity.overview}
-                </p>
-                <div className="p-3 rounded-xl bg-[#12121c] border border-white/5 text-[11px] font-mono text-zinc-400">
-                  <span className="text-amber-400 font-semibold">Architectural Structure: </span>
-                  {currentCity.architecture}
-                </div>
-              </div>
-
-              {/* What Tour They Are Giving Us (Step-by-Step Guided Itinerary) */}
-              <div className="mb-8 flex flex-col gap-3.5">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                    <Compass size={14} className="text-red-500" />
-                    What Tour You Are Receiving (Curated Itinerary)
-                  </h3>
-                  <span className="text-[10px] font-mono text-amber-400">4-Phase Walkthrough</span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                  {currentCity.tourPhases.map((phase) => (
-                    <div
-                      key={phase.phase}
-                      className="p-4 rounded-2xl bg-[#0e0e16] border border-white/5 flex flex-col gap-2 hover:border-white/15 transition-colors"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono font-bold text-red-500 uppercase px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20">
-                          {phase.phase} • {phase.duration}
-                        </span>
-                      </div>
-                      <h4 className="text-sm font-bold text-white tracking-tight">
-                        {phase.title}
-                      </h4>
-                      <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-                        {phase.description}
-                      </p>
-                      <div className="mt-auto pt-2 border-t border-white/5 text-[11px] font-mono text-amber-300/90">
-                        <span className="text-zinc-500">Key Highlight: </span>
-                        {phase.highlight}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Rare Artifacts & Regional Culture */}
-              <div className="mb-8 flex flex-col gap-3.5">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                  <Award size={14} className="text-red-500" />
-                  Key Artifacts & Cultural Heritage on Display
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {currentCity.artifacts.map((art, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3.5 rounded-xl bg-[#0c0c14] border border-white/5 flex flex-col gap-1"
-                    >
-                      <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400">
-                        <span className="text-red-400 font-semibold">{art.period}</span>
-                        <span className="truncate max-w-[140px]">{art.origin}</span>
-                      </div>
-                      <h5 className="text-xs sm:text-sm font-bold text-white">
-                        {art.title}
-                      </h5>
-                      <p className="text-[11px] text-zinc-400 font-sans leading-snug">
-                        {art.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Cultural Heritage Notes */}
-                <div className="p-4 rounded-2xl bg-red-950/15 border border-red-500/25 flex flex-col gap-2">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-400">
-                    Regional Culture & Revolutionary Traditions: {currentCity.culturalHeritage.tradition}
-                  </span>
-                  <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-                    {currentCity.culturalHeritage.description}
+                  <h2
+                    className="text-xl sm:text-3xl font-extrabold text-white"
+                    style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.05em", lineHeight: "1.1" }}
+                  >
+                    {currentCity.name.toUpperCase()} — {currentCity.museumName.toUpperCase()}
+                  </h2>
+                  <p className="text-xs text-zinc-400 font-sans italic line-clamp-1">
+                    "{currentCity.tagline}"
                   </p>
-                  <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-zinc-400 mt-1">
-                    <span className="text-zinc-500">Celebrated Patriots:</span>
-                    {currentCity.culturalHeritage.keyFigures.map((fig, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">
-                        {fig}
+                </div>
+
+                {/* Fixed Close Button */}
+                <button
+                  onClick={() => setIsDetailModalOpen(false)}
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer flex-shrink-0 z-40"
+                  title="Close Tour Details"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* 2. SCROLLABLE CONTENT BODY - Displays larger images and shorter text layout */}
+              <div className="p-6 sm:p-8 md:p-10 overflow-y-auto flex-grow flex flex-col gap-8 scrollbar-thin">
+                
+                {/* Immersive Splitted Gallery Banner (Virasat Inspired) - High Weight Images */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Museum Architecture Image Card */}
+                  <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-48 sm:h-64 shadow-lg">
+                    <img
+                      src={currentCity.museumImage}
+                      alt={currentCity.museumName}
+                      className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
+                      <span className="text-[9px] font-mono uppercase tracking-widest text-amber-400 font-bold">Museum Architecture</span>
+                      <h4 className="text-xs sm:text-sm font-bold text-white font-sans truncate max-w-[320px]">
+                        {currentCity.museumName}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Historical Context Image Card */}
+                  <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-48 sm:h-64 shadow-lg">
+                    <img
+                      src={currentCity.historyImage}
+                      alt={currentCity.tourTitle}
+                      className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
+                      <span className="text-[9px] font-mono uppercase tracking-widest text-red-400 font-bold">Historical Archive Exhibit</span>
+                      <h4 className="text-xs sm:text-sm font-bold text-white font-sans truncate max-w-[320px]">
+                        {currentCity.tourTitle}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Info Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase font-semibold">Tour Duration</span>
+                    <span className="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
+                      <Clock size={13} className="text-amber-400" />
+                      {currentCity.tourDuration}
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase font-semibold">Audio Guide</span>
+                    <span className="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
+                      <Volume2 size={13} className="text-green-400" />
+                      Bilingual Included
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase font-semibold">Languages</span>
+                    <span className="text-xs sm:text-sm font-bold text-white truncate">
+                      {currentCity.languages.join(", ")}
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase font-semibold">Standard Pass</span>
+                    <span className="text-xs sm:text-sm font-bold text-red-400 flex items-center gap-1 font-mono">
+                      <Ticket size={13} />
+                      {currentCity.guidedPassPrice}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Museum Summary Overview */}
+                <div className="flex flex-col gap-2.5">
+                  <h3 className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 flex items-center gap-2 font-bold">
+                    <Landmark size={13} className="text-red-500" />
+                    Heritage Overview
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+                    {currentCity.overview}
+                  </p>
+                  <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] font-mono text-zinc-400">
+                    <span className="text-amber-400 font-semibold">Structure Detail: </span>
+                    {currentCity.architecture}
+                  </div>
+                </div>
+
+                {/* What Tour They Are Giving Us (Step-by-Step Guided Itinerary) */}
+                <div className="flex flex-col gap-3.5">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                    <h3 className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 flex items-center gap-2 font-bold">
+                      <Compass size={13} className="text-red-500" />
+                      Guided Tour Itinerary
+                    </h3>
+                    <span className="text-[10px] font-mono text-amber-400 font-semibold">4-Phase Walkthrough</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    {currentCity.tourPhases.map((phase) => (
+                      <div
+                        key={phase.phase}
+                        className="p-4 rounded-xl bg-white/[0.01] border border-white/5 flex flex-col gap-2 hover:border-white/10 hover:bg-white/[0.02] transition-all"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[9px] font-mono font-bold text-red-500 uppercase px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20">
+                            {phase.phase} • {phase.duration}
+                          </span>
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight">
+                          {phase.title}
+                        </h4>
+                        <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                          {phase.description}
+                        </p>
+                        <div className="mt-auto pt-2 border-t border-white/5 text-[10px] font-mono text-amber-300/80">
+                          <span className="text-zinc-500">Exhibit Highlight: </span>
+                          {phase.highlight}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Key Artifacts Showcase */}
+                <div className="flex flex-col gap-3.5">
+                  <h3 className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 flex items-center gap-2 font-bold">
+                    <Award size={13} className="text-red-500" />
+                    Verified Historical Artifact Exhibits
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {currentCity.artifacts.map((art, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 flex flex-col gap-1 hover:border-white/10 transition-colors"
+                      >
+                        <div className="flex items-center justify-between text-[9px] font-mono text-zinc-500">
+                          <span className="text-red-400 font-semibold">{art.period}</span>
+                          <span className="truncate max-w-[140px]">{art.origin}</span>
+                        </div>
+                        <h5 className="text-xs font-bold text-white">
+                          {art.title}
+                        </h5>
+                        <p className="text-[10px] text-zinc-400 font-sans leading-normal">
+                          {art.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Cultural Heritage Notes */}
+                  <div className="p-4 rounded-xl bg-red-950/10 border border-red-500/20 flex flex-col gap-2">
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-red-400">
+                      Regional Culture & Traditions: {currentCity.culturalHeritage.tradition}
+                    </span>
+                    <p className="text-xs text-zinc-300 font-sans leading-relaxed">
+                      {currentCity.culturalHeritage.description}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-1.5 text-[9px] font-mono text-zinc-500 mt-1">
+                      <span className="text-zinc-500">Key Historical Figures:</span>
+                      {currentCity.culturalHeritage.keyFigures.map((fig, i) => (
+                        <span key={i} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">
+                          {fig}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Significance Statement & Ticket Inclusions */}
+                <div className="p-4 sm:p-5 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">
+                    <ShieldCheck size={15} />
+                    Historical Value Inclusions
+                  </div>
+                  <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+                    {currentCity.tourSignificance}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-white/5 text-[10px] font-mono text-zinc-400">
+                    {currentCity.ticketIncludes.map((inc, i) => (
+                      <span key={i} className="flex items-center gap-1.5 text-zinc-300">
+                        <span className="h-1 w-1 rounded-full bg-red-500" />
+                        {inc}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Significance Statement & Ticket Inclusions */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-[#101018] border border-white/10 mb-8 flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">
-                  <ShieldCheck size={16} />
-                  Historical Significance & Ticket Pass Value
-                </div>
-                <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
-                  {currentCity.tourSignificance}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-white/5 text-[11px] font-mono text-zinc-400">
-                  {currentCity.ticketIncludes.map((inc, i) => (
-                    <span key={i} className="flex items-center gap-1.5 text-zinc-300">
-                      <span className="h-1 w-1 rounded-full bg-red-500" />
-                      {inc}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Modal Bottom Actions: Book Pass + Next City Navigation */}
-              <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              {/* 3. FIXED MODAL FOOTER - Action buttons remain permanently visible at bottom */}
+              <div className="p-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 flex-shrink-0 bg-[#09090f] z-30">
                 {/* Book Pass CTA */}
                 <button
                   onClick={() => handleBookNow(currentCity.id)}
