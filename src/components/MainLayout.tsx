@@ -131,6 +131,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
       smoothWheel: true,
     });
     lenisRef.current = lenis;
+    (window as any).__lenis = lenis;
 
     let rafId: number;
     const raf = (time: number) => {
@@ -143,6 +144,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
+      (window as any).__lenis = null;
     };
   }, []);
 

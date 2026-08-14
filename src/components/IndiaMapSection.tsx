@@ -13,6 +13,7 @@ import {
   Award
 } from "lucide-react";
 import { MUSEUM_TOUR_CITIES, type MuseumTourCity } from "@/lib/museumTourData";
+import { INDIA_SVG_MAP } from "@/lib/indiaSvgMapData";
 
 interface IndiaMapSectionProps {
   onSelectCityForBooking: (cityId: string) => void;
@@ -56,15 +57,29 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
     }, 100);
   };
 
-  // Lock background body scroll when the modal is open to prevent background scrolling
+  // Lock background body scroll and freeze Lenis when the modal is open
   useEffect(() => {
+    const lenis = (window as any).__lenis;
     if (isDetailModalOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      if (lenis && typeof lenis.stop === "function") {
+        lenis.stop();
+      }
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      if (lenis && typeof lenis.start === "function") {
+        lenis.start();
+      }
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      const l = (window as any).__lenis;
+      if (l && typeof l.start === "function") {
+        l.start();
+      }
     };
   }, [isDetailModalOpen]);
 
@@ -90,42 +105,93 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             EXPLORE THE 5 CITIES AND MUSEUMS
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans leading-relaxed text-center">
-            Click any pin on the map to inspect the verified museum archives, guided tour itineraries, rare artifacts, and cultural significance before securing your visitor pass.
+            Click any pin on the map to inspect verified museum archives, guided tour itineraries, rare artifacts, and cultural significance before securing your visitor pass.
           </p>
         </div>
 
         {/* Main Map & Interactive Showcase Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left / Center: Static India Map (7 Cols on desktop) */}
+          {/* Left / Center: High-Precision Vector India Map (7 Cols on desktop) */}
           <div className="lg:col-span-7 relative w-full rounded-3xl bg-[#09090f] border border-white/10 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
             {/* Map Frame Watermark / Coordinate overlay */}
-            <div className="absolute top-4 left-6 flex items-center gap-2 text-[10px] font-mono text-zinc-400">
+            <div className="absolute top-4 left-6 flex items-center gap-2 text-[10px] font-mono text-zinc-400 z-10">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
               <span>GEOGRAPHICAL CULTURAL MATRIX • 2026</span>
             </div>
 
-            <div className="absolute bottom-4 right-6 hidden sm:flex items-center gap-3 text-[10px] font-mono text-zinc-400">
+            <div className="absolute bottom-4 right-6 hidden sm:flex items-center gap-3 text-[10px] font-mono text-zinc-400 z-10">
               <span>LAT 8°4′N — 37°6′N</span>
               <span>•</span>
               <span>LONG 68°7′E — 97°25′E</span>
             </div>
 
-            {/* Static PNG India Map Container with Absolute Interactive Pins */}
-            <div className="relative w-full aspect-[1/1.15] max-w-[450px] mx-auto flex items-center justify-center pt-8">
-              {/* Static High-Quality Transparent Silhouette Map of India */}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/India_map_blank.svg/512px-India_map_blank.svg.png"
-                alt="India Outline Map"
-                className="w-full h-full object-contain select-none pointer-events-none opacity-25"
-                style={{ filter: "invert(1) brightness(0.65) contrast(1.1)" }}
-              />
+            {/* High-Precision Vector India Map Container with Absolute City Pins */}
+            <div className="relative w-full aspect-[612/696] max-w-[480px] mx-auto flex items-center justify-center pt-4">
+              {/* Detailed State-by-State SVG Vector Map */}
+              <svg
+                viewBox={INDIA_SVG_MAP.viewBox}
+                className="w-full h-full select-none"
+                style={{ filter: "drop-shadow(0 0 25px rgba(0,0,0,0.9))" }}
+              >
+                {/* Lat/Long Grid Matrix */}
+                <g stroke="rgba(255,255,255,0.03)" strokeWidth="0.5">
+                  <line x1="0" y1="150" x2="612" y2="150" />
+                  <line x1="0" y1="300" x2="612" y2="300" />
+                  <line x1="0" y1="450" x2="612" y2="450" />
+                  <line x1="0" y1="600" x2="612" y2="600" />
+                  <line x1="150" y1="0" x2="150" y2="696" />
+                  <line x1="300" y1="0" x2="300" y2="696" />
+                  <line x1="450" y1="0" x2="450" y2="696" />
+                </g>
 
-              {/* Absolute City Pins overlaying the static PNG map */}
-              {/* 1. DELHI */}
+                {/* Connecting Heritage Flight/Railway Network lines */}
+                <g stroke="rgba(239,68,68,0.25)" strokeWidth="1" strokeDasharray="3 3">
+                  <line x1="188" y1="205" x2="130" y2="435" /> {/* Delhi - Mumbai */}
+                  <line x1="188" y1="205" x2="435" y2="345" /> {/* Delhi - Kolkata */}
+                  <line x1="130" y1="435" x2="215" y2="550" /> {/* Mumbai - Bangalore */}
+                  <line x1="215" y1="550" x2="265" y2="565" /> {/* Bangalore - Chennai */}
+                  <line x1="265" y1="565" x2="435" y2="345" /> {/* Chennai - Kolkata */}
+                </g>
+
+                {/* Render All Indian States/Territories */}
+                <g>
+                  {INDIA_SVG_MAP.locations.map((loc) => {
+                    const isHeritageState =
+                      loc.id === "dl" ||
+                      loc.id === "mh" ||
+                      loc.id === "wb" ||
+                      loc.id === "ka" ||
+                      loc.id === "tn";
+                    return (
+                      <path
+                        key={loc.id}
+                        d={loc.path}
+                        id={loc.id}
+                        fill={isHeritageState ? "#151522" : "#0a0a12"}
+                        stroke="#ffffff18"
+                        strokeWidth="0.8"
+                        className="transition-colors duration-300 hover:fill-[#222238] cursor-pointer"
+                        onClick={() => {
+                          if (loc.id === "dl") handleCityPinClick("delhi");
+                          if (loc.id === "mh") handleCityPinClick("mumbai");
+                          if (loc.id === "wb") handleCityPinClick("kolkata");
+                          if (loc.id === "ka") handleCityPinClick("bangalore");
+                          if (loc.id === "tn") handleCityPinClick("chennai");
+                        }}
+                      >
+                        <title>{loc.name}</title>
+                      </path>
+                    );
+                  })}
+                </g>
+              </svg>
+
+              {/* Absolute City Pins Overlaying Vector Coordinates */}
+              {/* 1. DELHI (x: 188, y: 205) */}
               <button
                 onClick={() => handleCityPinClick("delhi")}
-                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
-                style={{ left: "48%", top: "31%", transform: "translate(-50%, -50%)" }}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0 z-20"
+                style={{ left: "30.7%", top: "29.5%", transform: "translate(-50%, -50%)" }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
@@ -138,11 +204,11 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 </div>
               </button>
 
-              {/* 2. MUMBAI */}
+              {/* 2. MUMBAI (x: 130, y: 435) */}
               <button
                 onClick={() => handleCityPinClick("mumbai")}
-                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
-                style={{ left: "29%", top: "60%", transform: "translate(-50%, -50%)" }}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0 z-20"
+                style={{ left: "21.2%", top: "62.5%", transform: "translate(-50%, -50%)" }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-orange-500/30 opacity-75"></span>
@@ -155,11 +221,11 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 </div>
               </button>
 
-              {/* 3. KOLKATA */}
+              {/* 3. KOLKATA (x: 435, y: 345) */}
               <button
                 onClick={() => handleCityPinClick("kolkata")}
-                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
-                style={{ left: "74%", top: "52%", transform: "translate(-50%, -50%)" }}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0 z-20"
+                style={{ left: "71.1%", top: "49.6%", transform: "translate(-50%, -50%)" }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
@@ -172,11 +238,11 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 </div>
               </button>
 
-              {/* 4. BANGALORE */}
+              {/* 4. BANGALORE (x: 215, y: 550) */}
               <button
                 onClick={() => handleCityPinClick("bangalore")}
-                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
-                style={{ left: "44%", top: "76%", transform: "translate(-50%, -50%)" }}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0 z-20"
+                style={{ left: "35.1%", top: "79.0%", transform: "translate(-50%, -50%)" }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-amber-500/30 opacity-75"></span>
@@ -189,11 +255,11 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 </div>
               </button>
 
-              {/* 5. CHENNAI */}
+              {/* 5. CHENNAI (x: 265, y: 565) */}
               <button
                 onClick={() => handleCityPinClick("chennai")}
-                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0"
-                style={{ left: "52%", top: "78%", transform: "translate(-50%, -50%)" }}
+                className="absolute cursor-pointer group focus:outline-none bg-transparent border-none p-0 z-20"
+                style={{ left: "43.3%", top: "81.2%", transform: "translate(-50%, -50%)" }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-red-500/30 opacity-75"></span>
@@ -281,15 +347,21 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
             onClick={() => setIsDetailModalOpen(false)}
           >
-            {/* Modal Inner Container - Flex container with scrollable content block and fixed header/footer */}
+            {/* Modal Inner Container */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
+              data-lenis-prevent="true"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-4xl bg-[#09090f] border border-white/15 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-h-[85vh] sm:max-h-[90vh] flex flex-col overflow-hidden text-zinc-100 selection:bg-red-600/30"
             >
@@ -329,7 +401,12 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               </div>
 
               {/* 2. SCROLLABLE CONTENT BODY - Displays larger images and shorter text layout */}
-              <div className="p-6 sm:p-8 md:p-10 overflow-y-auto flex-grow flex flex-col gap-8 scrollbar-thin">
+              <div 
+                data-lenis-prevent="true"
+                onWheel={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                className="p-6 sm:p-8 md:p-10 overflow-y-auto flex-grow flex flex-col gap-8 scrollbar-thin"
+              >
                 
                 {/* Immersive Splitted Gallery Banner (Virasat Inspired) - High Weight Images */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
