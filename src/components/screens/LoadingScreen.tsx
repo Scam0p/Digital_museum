@@ -79,8 +79,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       <div className="flex flex-col items-center gap-8 relative z-10">
         {/* Brand */}
         <h1
-          className="text-5xl font-extrabold text-red-600 tracking-tight"
-          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+          className="text-5xl font-extrabold text-red-600"
+          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.04em" }}
         >
           POWERHOUSE
         </h1>

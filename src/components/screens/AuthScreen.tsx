@@ -94,8 +94,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onAuthSuccess }) => {
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-1">
           <h1 
-            className="text-4xl font-extrabold text-red-600 tracking-tight"
-            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+            className="text-4xl font-extrabold text-red-600"
+            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.04em" }}
           >
             POWERHOUSE
           </h1>

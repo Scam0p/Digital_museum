@@ -15,8 +15,8 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onProceed }) => {
       {/* Top Header Section */}
       <header className="w-full flex flex-col items-center justify-center py-6 z-10">
         <h1 
-          className="text-7xl md:text-9xl tracking-tight text-red-600 font-extrabold select-none transition-transform duration-500 hover:scale-[1.02]"
-          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+          className="text-7xl md:text-9xl text-red-600 font-extrabold select-none transition-transform duration-500 hover:scale-[1.02]"
+          style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.04em" }}
         >
           POWERHOUSE
         </h1>

@@ -409,8 +409,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
         <div className="flex items-center gap-3">
           <h1
             onClick={scrollToTop}
-            className="text-2xl font-extrabold text-red-600 tracking-tight cursor-pointer select-none"
-            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+            className="text-2xl font-extrabold text-red-600 cursor-pointer select-none"
+            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.04em" }}
           >
             POWERHOUSE
           </h1>
@@ -580,8 +580,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
             <div className="lg:col-span-5 flex flex-col gap-5 text-left">
               <div className="flex items-center gap-3">
                 <span
-                  className="text-3xl md:text-4xl font-extrabold text-red-600 tracking-tight select-none cursor-pointer"
-                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+                  className="text-3xl md:text-4xl font-extrabold text-red-600 select-none cursor-pointer"
+                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.04em" }}
                   onClick={scrollToTop}
                 >
                   POWERHOUSE

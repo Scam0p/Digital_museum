@@ -28,6 +28,8 @@ export interface MuseumTourCity {
   guidedPassPrice: string;
   badge: string;
   accentColor: string;
+  museumImage: string;
+  historyImage: string;
   // Percentage coordinates on the custom India Map SVG (viewBox 0 0 800 900)
   mapCoordinates: { x: number; y: number };
   pinLabelPosition: "top" | "bottom" | "left" | "right";
@@ -59,6 +61,8 @@ export const MUSEUM_TOUR_CITIES: MuseumTourCity[] = [
     guidedPassPrice: "₹1,000 / Adult",
     badge: "National Flagship Complex",
     accentColor: "red",
+    museumImage: "/60/frame_0150.webp",
+    historyImage: "/museum/moment-ina.png",
     mapCoordinates: { x: 38, y: 31 },
     pinLabelPosition: "right",
     tourPhases: [
@@ -152,6 +156,8 @@ export const MUSEUM_TOUR_CITIES: MuseumTourCity[] = [
     guidedPassPrice: "₹1,000 / Adult",
     badge: "Mass Movement Crucible",
     accentColor: "orange",
+    museumImage: "/60/frame_0270.webp",
+    historyImage: "/museum/moment-quit-india.png",
     mapCoordinates: { x: 26, y: 58 },
     pinLabelPosition: "left",
     tourPhases: [
@@ -245,6 +251,8 @@ export const MUSEUM_TOUR_CITIES: MuseumTourCity[] = [
     guidedPassPrice: "₹1,000 / Adult",
     badge: "Intellectual & Armed Awakening",
     accentColor: "red",
+    museumImage: "/60/frame_0580.webp",
+    historyImage: "/museum/matangini-hazra.png",
     mapCoordinates: { x: 70, y: 51 },
     pinLabelPosition: "right",
     tourPhases: [
@@ -338,6 +346,8 @@ export const MUSEUM_TOUR_CITIES: MuseumTourCity[] = [
     guidedPassPrice: "₹1,000 / Adult",
     badge: "Deccan Resistance & Innovation",
     accentColor: "amber",
+    museumImage: "/60/frame_0001.webp",
+    historyImage: "/museum/alluri-sitarama-raju.png",
     mapCoordinates: { x: 41, y: 77 },
     pinLabelPosition: "left",
     tourPhases: [
@@ -431,6 +441,8 @@ export const MUSEUM_TOUR_CITIES: MuseumTourCity[] = [
     guidedPassPrice: "₹1,000 / Adult",
     badge: "Coastal Citadel & Royal Defiance",
     accentColor: "red",
+    museumImage: "/60/frame_0390.webp",
+    historyImage: "/museum/velu-nachiyar.png",
     mapCoordinates: { x: 48, y: 79 },
     pinLabelPosition: "right",
     tourPhases: [

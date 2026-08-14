@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -61,6 +61,18 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
     }, 100);
   };
 
+  // Lock background body scroll when the modal is open
+  useEffect(() => {
+    if (isDetailModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isDetailModalOpen]);
+
   return (
     <section
       id="map-section"
@@ -77,10 +89,10 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             National Archival Network
           </span>
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight"
-            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wide"
+            style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.05em" }}
           >
-            EXPLORE THE 5 HERITAGE CITIES & MUSEUMS
+            EXPLORE THE 5 CITIES AND MUSEUMS
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans leading-relaxed">
             Click any pin on the map to inspect the verified museum archives, guided tour itineraries, rare artifacts, and cultural significance before securing your visitor pass.
@@ -344,7 +356,7 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-sm"
             onClick={() => setIsDetailModalOpen(false)}
           >
             <motion.div
@@ -353,7 +365,7 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-[#09090f] border border-white/15 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-h-[90vh] overflow-y-auto my-auto text-zinc-100 selection:bg-red-600/30"
+              className="relative w-full max-w-4xl bg-[#09090f] border border-white/15 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-y-auto max-h-[85vh] sm:max-h-[90vh] my-auto text-zinc-100 selection:bg-red-600/30"
             >
               {/* Top Accent Stripe */}
               <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-red-600 via-orange-500 to-amber-400" />
@@ -379,8 +391,8 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 </div>
 
                 <h2
-                  className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight"
-                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif" }}
+                  className="text-2xl sm:text-4xl font-extrabold text-white"
+                  style={{ fontFamily: "'Anton', 'Impact', 'Arial Black', sans-serif", letterSpacing: "0.05em" }}
                 >
                   {currentCity.name.toUpperCase()} — {currentCity.museumName.toUpperCase()}
                 </h2>
@@ -388,6 +400,41 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                 <p className="text-xs sm:text-sm text-zinc-300 font-sans italic">
                   "{currentCity.tagline}"
                 </p>
+              </div>
+
+              {/* Immersive Splitted Gallery Banner (Virasat Inspired) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                {/* Museum Architecture Image Card */}
+                <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44 sm:h-56">
+                  <img
+                    src={currentCity.museumImage}
+                    alt={currentCity.museumName}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-amber-400 font-bold">Museum Architecture</span>
+                    <h4 className="text-xs font-bold text-white font-sans truncate max-w-[280px]">
+                      {currentCity.museumName}
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Historical Context Image Card */}
+                <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44 sm:h-56">
+                  <img
+                    src={currentCity.historyImage}
+                    alt={currentCity.tourTitle}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-4 flex flex-col gap-0.5">
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-red-400 font-bold">Historical Archive Exhibit</span>
+                    <h4 className="text-xs font-bold text-white font-sans truncate max-w-[280px]">
+                      {currentCity.tourTitle}
+                    </h4>
+                  </div>
+                </div>
               </div>
 
               {/* Quick Info Grid */}
