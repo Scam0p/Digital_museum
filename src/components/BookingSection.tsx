@@ -5,6 +5,7 @@ import { MapPin, Ticket, Check, ArrowRight, CreditCard, ChevronLeft, ChevronRigh
 interface BookingSectionProps {
   userEmail?: string;
   userName?: string;
+  initialCity?: string;
   onBookingComplete?: (record: any) => void;
   onReturnToHero?: () => void;
 }
@@ -63,6 +64,7 @@ const MONTHS_DATA = [
 export const BookingSection: React.FC<BookingSectionProps> = ({
   userEmail = "",
   userName = "",
+  initialCity = "delhi",
   onBookingComplete,
   onReturnToHero
 }) => {
@@ -77,9 +79,16 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
   // Form inputs
   const [fullName, setFullName] = useState<string>(userName || "");
   const [email, setEmail] = useState<string>(userEmail || "");
-  const [city, setCity] = useState<string>("delhi");
+  const [city, setCity] = useState<string>(initialCity || "delhi");
   const [adults, setAdults] = useState<number>(1);
   const [children, setChildren] = useState<number>(0);
+
+  // Synchronize city if initialCity prop changes
+  React.useEffect(() => {
+    if (initialCity) {
+      setCity(initialCity);
+    }
+  }, [initialCity]);
 
   // Ticket Pass Data
   const [ticketData, setTicketData] = useState<any>(null);

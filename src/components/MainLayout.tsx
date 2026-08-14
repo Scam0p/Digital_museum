@@ -17,6 +17,7 @@ import {
   Mail, Phone, MessageCircle, BookOpen
 } from "lucide-react";
 import { HistoryScreen } from "./HistoryScreen";
+import { IndiaMapSection } from "./IndiaMapSection";
 
 interface MainLayoutProps {
   onSignOut: () => void;
@@ -116,6 +117,9 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
 
   // Selected Pass Modal State (for viewing past passes from dashboard)
   const [selectedPassForModal, setSelectedPassForModal] = useState<BookingRecord | null>(null);
+
+  // Selected city synchronized between the India Map and Booking section
+  const [selectedBookingCity, setSelectedBookingCity] = useState<string>("delhi");
 
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -536,11 +540,17 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
       <IconicMomentsSection onScrollToBooking={scrollToBooking} />
 
       {/* ═══════════════════════════════════════════════════════════════
-          4. BOOKING SECTION
+          4. BLACK INDIA MAP & MUSEUM TOUR DISCOVERY SECTION
+          ═══════════════════════════════════════════════════════════════ */}
+      <IndiaMapSection onSelectCityForBooking={(cityId) => setSelectedBookingCity(cityId)} />
+
+      {/* ═══════════════════════════════════════════════════════════════
+          5. BOOKING SECTION
           ═══════════════════════════════════════════════════════════════ */}
       <BookingSectionWrapper
         userEmail={userProfile?.email}
         userName={userProfile?.name}
+        initialCity={selectedBookingCity}
         onBookingComplete={handleBookingCompleted}
         onReturnToHero={scrollToTop}
       />
@@ -1140,6 +1150,7 @@ function IconicMomentsSection({ onScrollToBooking: _ }: { onScrollToBooking: () 
 function BookingSectionWrapper(props: {
   userEmail?: string;
   userName?: string;
+  initialCity?: string;
   onBookingComplete?: (record: any) => void;
   onReturnToHero?: () => void;
 }) {
