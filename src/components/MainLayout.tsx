@@ -504,23 +504,54 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
       />
 
       {/* ───────────────────────────────────────────────────────────────
-           CONTENT SECTIONS — z:20 isolation layer with solid background.
-           bg-[#050507] covers the canvas fully so it can never bleed through.
-           isolation:isolate keeps all child stacking contexts self-contained.
+           CONTENT SECTIONS — z:20 isolation layer with Colorful Textured Tri-Color Gradient.
+           Features:
+           1. Rich Saffron/Kesari, Pearl-Azure Chakra, and Lush Emerald mesh canvas
+           2. Tactile Archival Grain/Noise texture overlay
+           3. Luminous floating ambient gradient blooms
+           4. Semi-transparent glassmorphic section containers allowing the colorful gradient to shine through
            ─────────────────────────────────────────────────────────────── */}
       <div 
-        className="w-full relative z-20 overflow-hidden bg-[#050507]" 
-        style={{ isolation: "isolate", minHeight: "100vh", backgroundColor: "#050507" }}
+        className="w-full relative z-20 overflow-hidden bg-tricolor-canvas" 
+        style={{ isolation: "isolate", minHeight: "100vh" }}
       >
+        {/* Multi-layered Tri-Color Atmospheric & Texture System */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          {/* Top Tricolor Accent Line separating 3D Hero and Museum Gallery */}
+          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#FF671F] via-[#F8FAFC] to-[#138808] opacity-90 shadow-[0_0_15px_rgba(255,103,31,0.5)]" />
+
+          {/* Upper Zone Saffron / Kesari Atmospheric Blooms (Behind Circular Gallery) */}
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#FF671F]/35 via-[#FF9933]/25 to-transparent rounded-full blur-[140px] animate-saffron-glow pointer-events-none" />
+          <div className="absolute top-20 -left-32 w-[600px] h-[600px] bg-gradient-to-tr from-[#E65100]/30 to-[#FF7722]/20 rounded-full blur-[130px] animate-saffron-glow pointer-events-none" />
+          <div className="absolute top-10 -right-28 w-[650px] h-[650px] bg-gradient-to-tl from-[#F59E0B]/25 to-[#FF9933]/20 rounded-full blur-[140px] pointer-events-none" />
+
+          {/* Middle Zone Luminous Frost & Chakra Azure Blooms */}
+          <div className="absolute top-[36%] left-1/2 -translate-x-1/2 w-[850px] h-[480px] bg-gradient-to-r from-blue-700/20 via-sky-300/12 to-indigo-700/20 rounded-full blur-[160px] animate-chakra-glow pointer-events-none" />
+          <div className="absolute top-[44%] -left-36 w-[620px] h-[620px] bg-blue-600/15 rounded-full blur-[150px] pointer-events-none" />
+
+          {/* Lower Zone Emerald & Jade Blooms (Iconic Moments & Booking Section) */}
+          <div className="absolute top-[58%] -right-32 w-[800px] h-[800px] bg-gradient-to-bl from-[#138808]/30 via-[#059669]/20 to-transparent rounded-full blur-[160px] animate-emerald-glow pointer-events-none" />
+          <div className="absolute top-[72%] -left-20 w-[750px] h-[750px] bg-gradient-to-tr from-[#047857]/28 via-[#10B981]/20 to-transparent rounded-full blur-[150px] animate-emerald-glow pointer-events-none" />
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-t from-[#064E3B]/30 via-[#138808]/20 to-transparent rounded-full blur-[170px] pointer-events-none" />
+
+          {/* Archival Grid Overlay for tactile structural elegance */}
+          <div className="absolute inset-0 bg-archival-grid opacity-60" />
+
+          {/* High-Performance SVG Grain / Noise Texture */}
+          <div className="absolute inset-0 bg-grain-noise opacity-90 mix-blend-overlay pointer-events-none" />
+        </div>
 
       {/* ═══════════════════════════════════════════════════════════════
           2. CIRCULAR GALLERY SECTION — stagger reveal
           ═══════════════════════════════════════════════════════════════ */}
-      <section id="gallery-section" className="w-full py-24 px-4 bg-[#050507] relative border-t border-white/5">
-        {/* Subtle ambient radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-red-950/10 rounded-full blur-[120px] pointer-events-none" />
-
+      <section id="gallery-section" className="w-full py-24 px-4 bg-transparent relative border-t border-white/10 z-10">
+        {/* Subtle decorative tricolor badge above header */}
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-3 mb-10 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md text-[10px] font-mono tracking-widest text-[#FF9933] uppercase shadow-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] animate-ping" />
+            <span>Tricolor Digital Pavilion</span>
+          </div>
+
           <RevealHeader
             eyebrow="3D Archival Exhibition"
             title="Freedom Fighters & Historical Events"
@@ -530,7 +561,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
         </div>
 
         <RevealSection delay={0.1}>
-          <div className="w-full h-[600px] relative rounded-3xl overflow-hidden border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+          <div className="w-full h-[600px] relative rounded-3xl overflow-hidden border border-white/15 bg-black/30 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
             <CircularGallery
               items={FREEDOM_FIGHTERS.map(f => ({ image: f.image, text: f.text }))}
               bend={2.5}
@@ -564,15 +595,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
       />
 
       {/* ═══════════════════════════════════════════════════════════════
-          5. FOOTER
-          ═══════════════════════════════════════════════════════════════ */}
-      {/* ═══════════════════════════════════════════════════════════════
           5. FOOTER — POWERHOUSE TECH. STYLE (Expanded & Rich)
           ═══════════════════════════════════════════════════════════════ */}
-      <footer className="w-full bg-[#050507] border-t border-white/10 pt-20 pb-12 px-6 md:px-16 text-zinc-400 font-sans relative overflow-hidden">
+      <footer className="w-full bg-black/40 backdrop-blur-2xl border-t border-white/10 pt-20 pb-12 px-6 md:px-16 text-zinc-400 font-sans relative overflow-hidden z-10">
         {/* Subtle decorative glow */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-950/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-orange-950/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#FF9933]/12 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
           {/* Main Top Grid */}
@@ -1116,15 +1144,15 @@ function IconicMomentsSection({ onScrollToBooking: _ }: { onScrollToBooking: () 
   return (
     <motion.section
       ref={sectionRef}
-      className="w-full py-24 px-6 md:px-12 bg-[#08080c] relative border-t border-white/5 overflow-hidden"
+      className="w-full py-24 px-6 md:px-12 bg-transparent relative border-t border-white/10 overflow-hidden z-10"
     >
       {/* Counter-parallax decorative layer */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{ y: bgCounterY }}
       >
-        <div className="absolute top-1/3 left-0 w-72 h-72 bg-red-950/6 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/3 right-0 w-72 h-72 bg-amber-950/6 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 -left-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 -right-10 w-96 h-96 bg-[#138808]/15 rounded-full blur-[130px]" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto flex flex-col gap-12 relative z-10">

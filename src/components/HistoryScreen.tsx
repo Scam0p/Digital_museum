@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
@@ -11,10 +11,12 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack }) => {
     <div className="relative min-h-screen w-full bg-[#050507] text-zinc-100 flex flex-col overflow-hidden select-none font-sans selection:bg-orange-600/30">
       <div className="absolute inset-0 z-0">
         <img src="/hero-landscape.png" alt="India Landscape Background" className="w-full h-full object-cover object-center opacity-10 filter blur-sm brightness-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050507] via-[#050507]/90 to-[#050507]" />
-        <div className="absolute top-10 left-10 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#138808]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050507] via-[#08080c]/90 to-[#050507]" />
+        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-[#FF9933]/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 bg-grain-noise opacity-75 mix-blend-overlay pointer-events-none" />
       </div>
+      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#FF9933] via-white to-[#138808] opacity-80" />
       <div className="absolute inset-4 border border-white/10 rounded-[2rem] pointer-events-none z-30" />
       <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col gap-10 py-10 px-6 md:px-12">
         <header className="w-full flex items-center justify-between border-b border-white/10 pb-6">

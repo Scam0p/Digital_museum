@@ -144,9 +144,9 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
   };
 
   return (
-    <section id="booking-section" className="w-full py-20 px-4 md:px-12 bg-[#08080a] text-zinc-100 relative overflow-hidden border-t border-white/5">
+    <section id="booking-section" className="w-full py-20 px-4 md:px-12 bg-transparent text-zinc-100 relative overflow-hidden border-t border-white/10 z-10">
       {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-red-950/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[#138808]/15 rounded-full blur-[170px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto flex flex-col gap-10 relative z-10">
         {/* Header */}
@@ -163,7 +163,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
         </div>
 
         {/* Sliding Skyscanner-Style Container */}
-        <div className="w-full bg-zinc-900/40 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden min-h-[520px]">
+        <div className="w-full bg-black/35 border border-white/15 rounded-3xl p-6 md:p-10 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] relative overflow-hidden min-h-[520px]">
           <AnimatePresence mode="wait">
             {/* STEP 1: CALENDAR VIEW (Reference Screenshot Redesign - Clean Version) */}
             {step === "calendar" && (
@@ -173,7 +173,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="w-full max-w-lg mx-auto bg-[#1c1c1f] border border-white/10 rounded-[36px] p-6 md:p-8 shadow-2xl backdrop-blur-3xl font-sans"
+                className="w-full max-w-lg mx-auto bg-[#18181d]/85 border border-white/15 rounded-[36px] p-6 md:p-8 shadow-2xl backdrop-blur-3xl font-sans"
               >
                 {/* Top Header Row */}
                 <div className="flex items-center justify-between mb-6 px-1">
