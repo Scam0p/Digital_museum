@@ -426,7 +426,13 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ onSignOut }) => {
             onClick={() => document.getElementById("gallery-section")?.scrollIntoView({ behavior: "smooth" })}
             className="text-[11px] font-sans tracking-widest text-zinc-300 hover:text-white uppercase transition-colors cursor-pointer bg-transparent border-none"
           >
-            Museums
+            Gallery
+          </button>
+          <button
+            onClick={() => document.getElementById("map-section")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-[11px] font-sans tracking-widest text-zinc-300 hover:text-white uppercase transition-colors cursor-pointer bg-transparent border-none"
+          >
+            Heritage Map
           </button>
           <button
             onClick={scrollToBooking}
