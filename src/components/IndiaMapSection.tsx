@@ -311,10 +311,6 @@ export const IndiaMapSection: React.FC<IndiaMapSectionProps> = ({
                         ({city.state})
                       </span>
                     </div>
-
-                    <span className="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400">
-                      {city.badge}
-                    </span>
                   </div>
 
                   <p className="text-xs text-zinc-300 font-sans line-clamp-1">
